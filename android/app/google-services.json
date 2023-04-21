@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "579874597703",
+    "project_id": "blood-donation-ambure",
+    "storage_bucket": "blood-donation-ambure.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579874597703:android:1e4985ee698e112d4f3a62",
+        "android_client_info": {
+          "package_name": "com.example.blood_donation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579874597703-d2r55mcaokqgglfddpphh5u0pt9ube54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD18f2snkZJB0w0Xt-o7MqxmPyjRn2npbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579874597703-d2r55mcaokqgglfddpphh5u0pt9ube54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
