@@ -49,8 +49,14 @@ class BloodRequestTile extends StatelessWidget {
                     Text('Needed By', style: textTheme.caption),
                     Text(Tools.formatDate(request.requestDate) ?? ''),
                     const SizedBox(height: 12),
-                    Text('Blood Type', style: textTheme.caption),
-                    Text(request.bloodType.name ?? ''),
+                    Text('Blood Type', style: textTheme.bodySmall),
+                    Text(
+                      request.bloodType.name ?? '',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: MainColors.primary,
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -79,7 +85,7 @@ class BloodRequestTile extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'Details',
+                  'See More',
                   style: textTheme.button.copyWith(color: Colors.white),
                 ),
               ),

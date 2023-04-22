@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,6 +17,21 @@ class SingleRequestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _callNumber() async {
+      final number = 'tel:+91${request.contactNumber}'; //set the number here
+      bool res = await FlutterPhoneDirectCaller.callNumber(number);
+    }
+
+    final url = Uri.parse(
+        'https://www.google.com/maps/search/?api=1&query=${request.medicalCenter.latitude},${request.medicalCenter.longitude}');
+
+    Future<void> _launchUrl() async {
+      if (!await launchUrl(url)) {
+        Fluttertoast.showToast(msg: 'Could not launch map');
+        ;
+      }
+    }
+
     final textTheme = Theme.of(context).textTheme;
     final titleStyle = textTheme.caption.copyWith(fontSize: 14);
     final bodyStyle = textTheme.bodyText1.copyWith(fontSize: 16);
@@ -85,14 +100,12 @@ class SingleRequestScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () async {
-                          final url = 'https://www.google.com/maps/search/'
-                              '?api=1&query=${request.medicalCenter.latitude},'
-                              '${request.medicalCenter.longitude}';
-                          if (await canLaunch(url)) {
-                            launch(url);
-                          } else {
-                            Fluttertoast.showToast(msg: 'Could not launch map');
-                          }
+                          // if (await canLaunch(url)) {
+                          //   launch(url);
+                          // } else {
+
+                          // }
+                          _launchUrl();
                         },
                         icon: const Icon(Icons.navigation),
                         label: const Text('Get Directions'),
@@ -112,7 +125,7 @@ class SingleRequestScreen extends StatelessWidget {
                             'blood by ${Tools.formatDate(request.requestDate)}.\n'
                             'You can donate by visiting ${request.medicalCenter.name} located in '
                             '${request.medicalCenter.location}.\n\n'
-                            'Contact +961${request.contactNumber} for more info.',
+                            'Contact +91${request.contactNumber} for more info.',
                           );
                         },
                         icon: const Icon(Icons.share),
@@ -141,14 +154,12 @@ class SingleRequestScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(24),
                     )),
                   ),
-                  onPressed: () async {
-                    final contact = 'tel:+961${request.contactNumber}';
-                    if (await canLaunch(contact)) {
-                      launch(contact);
-                    } else {
-                      Fluttertoast.showToast(msg: 'Something wrong happened');
-                    }
-                  },
+                  onPressed: _callNumber ??
+                      () {
+                        Fluttertoast.showToast(msg: 'Something wrong happened');
+                      },
+
+                  // Fluttertoast.showToast(msg: 'Something wrong happened');
                   child: Center(
                     child: Text(
                       'Contact',
@@ -193,7 +204,9 @@ class _MarkFulfilledBtnState extends State<_MarkFulfilledBtn> {
             child: ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
-                  Colors.green[600],
+                  // Colors.green[600],
+                  Color(0xffee6c4d),
+                  // Color.fromARGB(255, 22, 29, 105),
                 ),
                 padding: MaterialStateProperty.all(
                   const EdgeInsets.all(12),

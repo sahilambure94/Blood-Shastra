@@ -19,7 +19,7 @@ class Validators {
   }
 
   static String phone(String val) {
-    final regExp = RegExp(r'(^[0-9]{7,8}$)');
+    final regExp = RegExp(r'(^[6-9]\d{9}$)');
     if (!regExp.hasMatch(val)) {
       return '* Please enter a valid phone number';
     }
@@ -46,8 +46,7 @@ class Validators {
   /// Allows only alphabetical non numeric characters,
   /// and only the dash and apostrophe in special chars
   static String name(String val) {
-    final regExp =
-        RegExp(r"^[a-zA-Z]+(([' -][a-zA-Z ])?[a-zA-Z]*)*$");
+    final regExp = RegExp(r"^[a-zA-Z]+(([' -][a-zA-Z ])?[a-zA-Z]*)*$");
     if (!regExp.hasMatch(val)) {
       return '* Please enter a valid name';
     }
