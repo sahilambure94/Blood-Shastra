@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -51,6 +48,15 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyACN9fnopWZEWji-agCO8p3objvWx-hn7w',
+    appId: '1:579874597703:web:8875b39e7d93824a4f3a62',
+    messagingSenderId: '579874597703',
+    projectId: 'blood-donation-ambure',
+    authDomain: 'blood-donation-ambure.firebaseapp.com',
+    storageBucket: 'blood-donation-ambure.appspot.com',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyD18f2snkZJB0w0Xt-o7MqxmPyjRn2npbE',
